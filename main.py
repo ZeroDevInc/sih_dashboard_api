@@ -158,7 +158,7 @@ async def logout_user(request : Request):
         return {"status" : 200 , "message": "User logged out successfully"}
     except firebase_admin.auth.AuthError as e:
         # Handle any authentication errors here
-        return {"status": 500, "detail":str(e)}
+        return {"status": 50000, "detail":str(e)}
 
 
 
