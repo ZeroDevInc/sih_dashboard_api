@@ -144,6 +144,7 @@ async def get_current_user(request : Request):
 
 @app.post("/logout")
 async def logout_user(request : Request):
+    return {"status":2000,"detail":"hello"}
     token = request.headers.get("Authorization")
     if token is None:
         # go to login page 
