@@ -144,8 +144,8 @@ async def get_current_user(request : Request):
 
 @app.post("/logout")
 async def logout_user(request : Request):
-    return {"status":2000,"detail":"hello"}
     token = request.headers.get("Authorization")
+    return {"status":2000,"detail":"hello"}
     if token is None:
         # go to login page 
         return {"status":401,"detail" : "toekn expired"}
