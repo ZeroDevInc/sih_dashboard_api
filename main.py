@@ -40,7 +40,7 @@ class User(BaseModel):
     username: str
     email: str
     password: str
-    uid : str
+    # uid : str
 
 
 # JWT Token Data
