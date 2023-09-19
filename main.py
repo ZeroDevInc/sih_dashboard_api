@@ -8,7 +8,7 @@ from datetime import datetime, timedelta
 import firebase_admin
 from firebase_admin import credentials , auth
 import pymongo
-import firebase
+import entry, exit
 
 
 app = FastAPI()
@@ -166,6 +166,30 @@ async def logout_user(request : Request):
 @app.get("/profile/", response_model=User)
 async def read_users_me(current_user: User = Depends(get_current_user)):
     return current_user
+
+
+
+class Credentials(BaseModel):
+    vehicle_number: str
+    vehicle_type: int
+    start_time: int
+    end_time: int
+    parking_id: str
+
+
+class Entry_and_exit_creds(BaseModel):
+    parking_id: str
+    vehicle_number: str
+
+@app.post("/entry")
+async def enter(vn: Entry_and_exit_creds):
+    entry.entry(vn.vehicle_number)
+
+@app.post("/exit")
+async def exiting(cred: Entry_and_exit_creds):
+    exit.handle_exit(cred.vehicle_number, cred.parking_id)
+
+
 
 if __name__ == "__main__":
     import uvicorn
