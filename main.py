@@ -9,6 +9,8 @@ import firebase_admin
 from firebase_admin import credentials , auth
 import pymongo
 import entry, exit
+import allparkings
+import parkingdetail
 
 
 app = FastAPI()
@@ -190,6 +192,17 @@ async def enter(vn: Entry_and_exit_creds):
 async def exiting(cred: Entry_and_exit_creds):
     exit.handle_exit(cred.vehicle_number, cred.parking_id)
 
+
+@app.get("/allparkings")
+async def parkingpointer():
+    return allparkings.all_parkings()
+
+class Parking_id(BaseModel):
+    parking_id: str
+
+@app.post("/parkingdet")
+async def parking_det(pkid: Parking_id):
+    return parkingdetail.parking_detail(pkid.parking_id)
 
 
 if __name__ == "__main__":
