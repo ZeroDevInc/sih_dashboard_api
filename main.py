@@ -150,7 +150,7 @@ async def logout_user(request : Request):
         return {"status":401,"detail" : "toekn expired"}
     
     id_token = token.replace("Bearer ", "")
-    return {"status":2000,"detail":"hello"}
+    # return {"status":2000,"detail":"hello"}
     try:
         # Revoke the user's authentication token
         decoded_token =  auth.verify_id_token(id_token)
