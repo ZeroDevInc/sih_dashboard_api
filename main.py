@@ -40,7 +40,7 @@ class User(BaseModel):
     username: str
     email: str
     password: str
-    uid : str
+    # uid : str
 
 
 # JWT Token Data
@@ -150,6 +150,7 @@ async def logout_user(request : Request):
         return {"status":401,"detail" : "toekn expired"}
     
     id_token = token.replace("Bearer ", "")
+    return {"status":2000,"detail":"hello"}
     try:
         # Revoke the user's authentication token
         decoded_token =  auth.verify_id_token(id_token)
@@ -158,7 +159,7 @@ async def logout_user(request : Request):
         return {"status" : 200 , "message": "User logged out successfully"}
     except firebase_admin.auth.AuthError as e:
         # Handle any authentication errors here
-        return {"status": 500, "detail":str(e)}
+        return {"status": 50000, "detail":str(e)}
 
 
 
