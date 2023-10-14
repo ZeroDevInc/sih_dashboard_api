@@ -71,8 +71,7 @@ async def register_user(request: Request):
             display_name=user["username"],
         )
         users_collection.insert_one({"username": user["username"],
-  "email": user["email"],
-  "vehicles": []})
+  "email": user["email"]})
         
         return {"status":200,"detail":"User created with UID:"+user_record.uid}
         
