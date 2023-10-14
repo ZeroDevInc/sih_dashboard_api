@@ -23,7 +23,7 @@ firebase_admin.initialize_app(cred)
 # MongoDB Initialization
 client = pymongo.MongoClient("mongodb+srv://mongo:mongo@cluster0.4cvm33l.mongodb.net/?retryWrites=true&w=majority")
 db = client["sih"]
-users_collection = db["users"]
+users_collection = db["admin_user"]
 
 # JWT Settings
 SECRET_KEY = "your-secret-key"
